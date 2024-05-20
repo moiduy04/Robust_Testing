@@ -60,7 +60,7 @@ public class GradeConverterTest {
     // 0 = GradeConverter (correct)
     // 1 = GradeConverterWrong1 (thiếu kiểm tra invalid input)
     // 2 = GradeConverterWrong2 (thiếu làm tròn + thừa code)
-    int testClassId = 0;
+    int testClassId = 1;
     //  set the `testClassId` and run.
 
     final String Aplus = "A+";
@@ -93,23 +93,27 @@ public class GradeConverterTest {
             {0.8, 6.7, false, belowA},
             {40510.3, -87683.0, true, ""},
     };
-    Object[][] test_CFG0 = {};
-    Object[][] test_CFG1 = {};
-    Object[][] test_CFG2 = {};
+    Object[][] test_CFG0 = test_EP_output;
+    Object[][] test_CFG1 = {
+            {8.4, 9.8, false, Aplus},
+            {8.9, 8.7, false, A},
+            {0.8, 6.7, false, belowA},
+    };
+    Object[][] test_CFG2 = test_EP_output;
 
     List<Object[]> testCases = new ArrayList<>();
     addTest(testCases, test_BVA, testClassId);
     addTest(testCases, test_EP_input, testClassId);
     addTest(testCases, test_EP_output, testClassId);
-//    if (testClassId == 0) {
-//      addTest(testCases, test_CFG0, testClassId);
-//    } else if (testClassId == 1) {
-//      addTest(testCases, test_CFG1, testClassId);
-//    } else if (testClassId == 2) {
-//      addTest(testCases, test_CFG2, testClassId);
-//    } else {
-//      throw new IllegalArgumentException("testClassId must be either 0, 1 or 2");
-//    }
+    if (testClassId == 0) {
+      addTest(testCases, test_CFG0, testClassId);
+    } else if (testClassId == 1) {
+      addTest(testCases, test_CFG1, testClassId);
+    } else if (testClassId == 2) {
+      addTest(testCases, test_CFG2, testClassId);
+    } else {
+      throw new IllegalArgumentException("testClassId must be either 0, 1 or 2");
+    }
 
     return testCases;
   }
